@@ -14,4 +14,4 @@ open index.html via browser
 
 ## Content
 
-- [Behavior Comparison of React PureComponent vs. Component](./src/ComponentVsPureComponent)
+- [Behavior Comparison of React PureComponent vs. Component using Maps](./src/ComponentVsPureComponent)
