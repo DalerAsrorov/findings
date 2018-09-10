@@ -6,6 +6,9 @@
   "repository": "https://github.com/DalerAsrorov/findings.git",
   "author": "Daler Asrorov <asrorids@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "build": "webpack --watch"
+  },
   "devDependencies": {
     "@types/googlemaps": "^3.30.13",
     "@types/markerclustererplus": "^2.1.33",
