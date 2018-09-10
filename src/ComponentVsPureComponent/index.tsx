@@ -2,16 +2,16 @@ import * as React from 'react';
 import Map from './MapView';
 import { getCurrentGeoLocation } from './utils';
 
+const CLOSER_ZOOM = 16;
+const UPDATE_INTERVAL_MLS = 5000;
+
 // To see the difference between PureComponent and Component
 // in the map, you need to set `shouldUsePureComponent` to true.
 // Once it's true, you can drag around the map and see that the
-// map doesn't go back to the current user location after every 5 seconds
+// map doesn't go back to the current user location after every `UPDATE_INTERVAL_MLS` seconds
 // of the interval. This is because `isUpdated` state property always true
 // after interval is finished.
-const shouldUsePureComponent = true;
-
-const CLOSER_ZOOM = 16;
-const UPDATE_INTERVAL_MLS = 2000;
+const shouldUsePureComponent = false;
 
 type State = {
   latitude: number;
