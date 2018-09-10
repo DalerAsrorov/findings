@@ -1,5 +1,5 @@
-export const getCurrentGeoLocation = (): Promise<Coords> => {
-  return new Promise((resolve, reject) => {
+export const getCurrentGeoLocation = (): Promise<Coords> =>
+  new Promise((resolve, reject) => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         ({
@@ -15,4 +15,3 @@ export const getCurrentGeoLocation = (): Promise<Coords> => {
       reject(Error('No navigator available in window object'));
     }
   });
-};
