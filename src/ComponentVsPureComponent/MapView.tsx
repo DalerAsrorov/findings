@@ -22,11 +22,13 @@ const MapView = withScriptjs(
       latitude: number;
       longitude: number;
       zoom: number;
+      mapRef: any;
     }) => (
       <GoogleMap
         defaultCenter={DEFAULT_CENTER}
         center={{ lat: props.latitude, lng: props.longitude }}
         defaultZoom={16}
+        ref={props.mapRef}
       >
         {props.isMarkerShown && (
           <Marker position={{ lat: props.latitude, lng: props.longitude }} />
@@ -41,6 +43,7 @@ const MapViewWrapper = (props: {
   longitude: number;
   latitude: number;
   zoom: number;
+  mapRef: any;
 }) => (
   <MapView
     {...props}
