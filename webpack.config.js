@@ -1,5 +1,6 @@
 module.exports = {
-  entry: './index.tsx',
+  entry: './src/index.tsx',
+  mode: 'production',
   output: {
     filename: 'bundle.js',
     path: __dirname + '/dist'
