@@ -25,8 +25,8 @@ const ComponentType = shouldUsePureComponent
   : React.Component;
 
 export default class PureComponentVsComponent extends ComponentType<{}, State> {
+  private updateInterval: number;
   private mapRef: any;
-  private updateInterval: any;
 
   constructor(props: {}) {
     super(props);
@@ -55,7 +55,7 @@ export default class PureComponentVsComponent extends ComponentType<{}, State> {
         console.log('some error', error);
       });
 
-    this.updateInterval = setInterval(() => {
+    this.updateInterval = window.setInterval(() => {
       this.setState({
         isUpdated: true
       });
