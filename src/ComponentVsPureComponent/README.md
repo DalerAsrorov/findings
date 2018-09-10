@@ -1,4 +1,4 @@
-# Pure Component vs Component
+# Behavior Comparison of React PureComponent vs. Component using Maps
 
 This illustrates the performance optimization `PureComponent` does compared to `Component`.
 
