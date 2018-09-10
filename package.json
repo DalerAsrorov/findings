@@ -5,5 +5,14 @@
   "main": "index.js",
   "repository": "https://github.com/DalerAsrorov/findings.git",
   "author": "Daler Asrorov <asrorids@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@types/react": "^16.4.13",
+    "@types/react-dom": "^16.0.7",
+    "awesome-typescript-loader": "^5.2.1",
+    "react": "^16.5.0",
+    "react-dom": "^16.5.0",
+    "source-map-loader": "^0.2.4",
+    "typescript": "^3.0.3"
+  }
 }
