@@ -9,7 +9,7 @@ git clone https://github.com/DalerAsrorov/findings.git
 cd findings
 yarn install
 yarn build
-open index.html
+open index.html via browser
 ```
 
 ## Content
