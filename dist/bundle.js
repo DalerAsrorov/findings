@@ -39632,6 +39632,7 @@ const CONTROLS_WRAPPER_STYLE = {
     padding: '0px 20px',
     textAlign: 'center'
 };
+const getComponentType = (shouldUsePureComponent) => !shouldUsePureComponent ? 'Component' : 'PureComponent';
 class PureComponentVsComponentExample extends React.Component {
     constructor() {
         super(...arguments);
@@ -39646,14 +39647,20 @@ class PureComponentVsComponentExample extends React.Component {
     }
     render() {
         const { shouldUsePureComponent } = this.state;
+        const componentTypeStr = getComponentType(!shouldUsePureComponent);
         return (React.createElement("div", null,
             React.createElement(MapView_1.MapWithComponentTypeState, { shouldUsePureComponent: shouldUsePureComponent }),
-            React.createElement(React.Fragment, null,
+            React.createElement("section", { style: CONTROLS_WRAPPER_STYLE },
+                React.createElement("p", null,
+                    "Currently",
+                    ' ',
+                    React.createElement("strong", null, getComponentType(shouldUsePureComponent)),
+                    " is used."),
                 React.createElement("button", { onClick: this.handleSwitch, style: BTN_STYLE },
                     React.createElement("h2", null,
                         "Use ",
-                        shouldUsePureComponent ? 'Component' : 'PureComponent'))),
-            React.createElement("div", { style: CONTROLS_WRAPPER_STYLE },
+                        componentTypeStr))),
+            React.createElement("section", { style: CONTROLS_WRAPPER_STYLE },
                 React.createElement("p", null,
                     "The map gets updated every 5 seconds. Drag the map to a different location to see if location is set back to user's location after every 5 seconds. When using ",
                     React.createElement("strong", null, "PureComponent"),

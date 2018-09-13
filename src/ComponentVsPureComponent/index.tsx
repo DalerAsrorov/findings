@@ -21,6 +21,9 @@ const CONTROLS_WRAPPER_STYLE: React.CSSProperties = {
   textAlign: 'center'
 };
 
+const getComponentType = (shouldUsePureComponent: boolean) =>
+  !shouldUsePureComponent ? 'Component' : 'PureComponent';
+
 class PureComponentVsComponentExample extends React.Component<{}, State> {
   state = {
     shouldUsePureComponent: false
@@ -34,18 +37,21 @@ class PureComponentVsComponentExample extends React.Component<{}, State> {
 
   render() {
     const { shouldUsePureComponent } = this.state;
+    const componentTypeStr = getComponentType(!shouldUsePureComponent);
 
     return (
       <div>
         <Map shouldUsePureComponent={shouldUsePureComponent} />
-        <React.Fragment>
+        <section style={CONTROLS_WRAPPER_STYLE}>
+          <p>
+            Currently{' '}
+            <strong>{getComponentType(shouldUsePureComponent)}</strong> is used.
+          </p>
           <button onClick={this.handleSwitch} style={BTN_STYLE}>
-            <h2>
-              Use {shouldUsePureComponent ? 'Component' : 'PureComponent'}
-            </h2>
+            <h2>Use {componentTypeStr}</h2>
           </button>
-        </React.Fragment>
-        <div style={CONTROLS_WRAPPER_STYLE}>
+        </section>
+        <section style={CONTROLS_WRAPPER_STYLE}>
           <p>
             The map gets updated every 5 seconds. Drag the map to a different
             location to see if location is set back to user's location after
@@ -63,7 +69,7 @@ class PureComponentVsComponentExample extends React.Component<{}, State> {
           >
             Source Code
           </a>
-        </div>
+        </section>
       </div>
     );
   }
