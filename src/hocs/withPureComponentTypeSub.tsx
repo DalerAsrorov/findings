@@ -58,7 +58,7 @@ const withComponentType = (
 
       // The update interval sets isUpdated to the same value
       // Using Component should cause re-render after 5 seconds
-      // Using PureComponent should NOT cause re-render since props
+      // Using PureComponent should NOT cause re-render since state
       // diff comparison is shallow
       this.updateInterval = window.setInterval(() => {
         this.setState({

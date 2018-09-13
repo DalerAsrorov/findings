@@ -39649,13 +39649,13 @@ class PureComponentVsComponentExample extends React.Component {
                     React.createElement("h2", null,
                         "Use ",
                         shouldUsePureComponent ? 'Component' : 'PureComponent'))),
-            React.createElement("p", null,
+            React.createElement("p", { style: { padding: '0px 20px' } },
                 "The map gets updated every 5 seconds. Drag the map to a different location to see if location is set back to user's location after every 5 seconds. When using ",
                 React.createElement("strong", null, "PureComponent"),
                 ", the map should not zoom back to the user location while ",
                 React.createElement("strong", null, "Component"),
                 ' ',
-                "does since the state update is not shallow.")));
+                "does since the previous state propertiy isUpdated property stays the same. The comparison is not shallow.")));
     }
 }
 exports.default = PureComponentVsComponentExample;
@@ -39711,7 +39711,7 @@ const withComponentType = (WrappedComponent, shouldUsePureComponent) => {
             });
             // The update interval sets isUpdated to the same value
             // Using Component should cause re-render after 5 seconds
-            // Using PureComponent should NOT cause re-render since props
+            // Using PureComponent should NOT cause re-render since state
             // diff comparison is shallow
             this.updateInterval = window.setInterval(() => {
                 this.setState({
