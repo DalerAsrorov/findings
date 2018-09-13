@@ -39657,10 +39657,10 @@ class PureComponentVsComponentExample extends React.Component {
                 React.createElement("p", null,
                     "The map gets updated every 5 seconds. Drag the map to a different location to see if location is set back to user's location after every 5 seconds. When using ",
                     React.createElement("strong", null, "PureComponent"),
-                    ", the map should not zoom back to the user location while",
-                    ' ',
+                    ", the map should not zoom back to the user location. The state property comparison after this.setState is not shallow and hence it does not re-render the map. On the other hand, ",
                     React.createElement("strong", null, "Component"),
-                    " does since the previous state propertiy isUpdated property stays the same. The comparison is not shallow."),
+                    ' ',
+                    "does re-render since the previous state (isUpdated) property doesn't change. The state property comparison after this.setState is not shallow and hence it does not re-render the map."),
                 React.createElement("a", { href: "https://github.com/DalerAsrorov/findings/tree/master/src/ComponentVsPureComponent", target: "__blank" }, "Source Code"))));
     }
 }
