@@ -24,7 +24,7 @@ const DEFAULT_CENTER = {
 };
 
 const LoadingMessage = () => (
-  <h4 style={{ textAlign: 'center' }}>Fetching your location...</h4>
+  <h4 style={{ textAlign: 'center' }}>Fetching current location...</h4>
 );
 
 const MAP_URL =

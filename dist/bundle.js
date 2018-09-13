@@ -39587,7 +39587,7 @@ const DEFAULT_CENTER = {
     lat: 37.773972,
     lng: -122.431297
 };
-const LoadingMessage = () => (React.createElement("h4", { style: { textAlign: 'center' } }, "Fetching your location..."));
+const LoadingMessage = () => (React.createElement("h4", { style: { textAlign: 'center' } }, "Fetching current location..."));
 const MAP_URL = 'https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places';
 const MapElement = react_google_maps_1.withScriptjs(react_google_maps_1.withGoogleMap((props) => (React.createElement(react_google_maps_1.GoogleMap, { defaultCenter: DEFAULT_CENTER, center: { lat: props.latitude, lng: props.longitude }, defaultZoom: 16 }, props.isMarkerShown && (React.createElement(react_google_maps_1.Marker, { position: { lat: props.latitude, lng: props.longitude } }))))));
 class MapView extends React.Component {
