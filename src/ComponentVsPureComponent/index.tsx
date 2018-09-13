@@ -1,82 +1,59 @@
 import * as React from 'react';
-import Map from './MapView';
-import { getCurrentGeoLocation } from './utils';
+import { MapWithComponentTypeState as Map } from './MapView';
 
+// constants
 const CLOSER_ZOOM = 16;
 const UPDATE_INTERVAL_MLS = 5000;
 
-// To see the difference between PureComponent and Component
-// in the map, you need to set `shouldUsePureComponent` to true.
-// Once it's true, you can drag around the map and see that the
-// map doesn't go back to the current user location after every `UPDATE_INTERVAL_MLS` seconds
-// of the interval. This is because `isUpdated` state property always true
-// after interval is finished.
-const shouldUsePureComponent = false;
-
+// types
 type State = {
-  latitude: number;
-  longitude: number;
-  isMarkerShown: boolean;
-  isUpdated: boolean;
+  shouldUsePureComponent: boolean;
 };
 
-const ComponentType = shouldUsePureComponent
-  ? React.PureComponent
-  : React.Component;
+// styles
+const BTN_STYLE = {
+  margin: '0 auto',
+  display: 'block',
+  marginTop: '8px'
+};
 
-export default class PureComponentVsComponent extends ComponentType<{}, State> {
-  private updateInterval: number;
-  private mapRef: any;
-
-  constructor(props: {}) {
-    super(props);
-
-    this.mapRef = React.createRef();
-    this.updateInterval = 0;
-  }
-
+class PureComponentVsComponentExample extends React.Component<{}, State> {
   state = {
-    latitude: 0,
-    longitude: 0,
-    isMarkerShown: false,
-    isUpdated: false
+    shouldUsePureComponent: false
   };
 
-  componentDidMount() {
-    getCurrentGeoLocation()
-      .then(({ latitude, longitude }: Coords) => {
-        this.setState({
-          isMarkerShown: true,
-          latitude,
-          longitude
-        });
-      })
-      .catch((error: Error) => {
-        console.log('some error', error);
-      });
-
-    this.updateInterval = window.setInterval(() => {
-      this.setState({
-        isUpdated: true
-      });
-    }, UPDATE_INTERVAL_MLS);
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.updateInterval);
-  }
+  private handleSwitch = (event: React.MouseEvent<HTMLButtonElement>) => {
+    this.setState(({ shouldUsePureComponent }) => {
+      return {
+        shouldUsePureComponent: !shouldUsePureComponent
+      };
+    });
+  };
 
   render() {
-    const { latitude, longitude, isMarkerShown } = this.state;
+    const { shouldUsePureComponent } = this.state;
 
     return (
-      <Map
-        latitude={latitude}
-        longitude={longitude}
-        isMarkerShown={isMarkerShown}
-        zoom={CLOSER_ZOOM}
-        mapRef={(ref: any) => (this.mapRef = ref)}
-      />
+      <div>
+        <Map shouldUsePureComponent={shouldUsePureComponent} />
+        <React.Fragment>
+          <button onClick={this.handleSwitch} style={BTN_STYLE}>
+            <h2>
+              Use {shouldUsePureComponent ? 'Component' : 'PureComponent'}
+            </h2>
+          </button>
+        </React.Fragment>
+        <p>
+          The map gets updated every 5 seconds. Drag the map to a different
+          location to see if location is set back to user's location after every
+          5 seconds. When using
+          <strong>PureComponent</strong>, the map should not zoom back to the
+          user location while <strong>Component</strong> does since the state
+          update is not shallow.
+        </p>
+      </div>
     );
   }
 }
+
+export default PureComponentVsComponentExample;
