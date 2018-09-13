@@ -7,7 +7,7 @@ export type ComponentTypeProps = {
   latitude: number;
   longitude: number;
   isUpdated: boolean;
-  wasRecentlyUpdated: boolean;
+  hasLocationAvailable: boolean;
 };
 
 const withComponentType = (
@@ -40,14 +40,14 @@ const withComponentType = (
       latitude: 0,
       longitude: 0,
       isUpdated: false,
-      wasRecentlyUpdated: false
+      hasLocationAvailable: false
     };
 
     componentDidMount() {
       getCurrentGeoLocation()
         .then(({ latitude, longitude }: Coords) => {
           this.setState({
-            wasRecentlyUpdated: true,
+            hasLocationAvailable: true,
             latitude,
             longitude
           });

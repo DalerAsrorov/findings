@@ -39587,11 +39587,14 @@ const DEFAULT_CENTER = {
     lat: 37.773972,
     lng: -122.431297
 };
+const LoadingMessage = () => (React.createElement("h4", { style: { textAlign: 'center' } }, "Fetching your location..."));
 const MAP_URL = 'https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places';
 const MapElement = react_google_maps_1.withScriptjs(react_google_maps_1.withGoogleMap((props) => (React.createElement(react_google_maps_1.GoogleMap, { defaultCenter: DEFAULT_CENTER, center: { lat: props.latitude, lng: props.longitude }, defaultZoom: 16 }, props.isMarkerShown && (React.createElement(react_google_maps_1.Marker, { position: { lat: props.latitude, lng: props.longitude } }))))));
 class MapView extends React.Component {
     render() {
-        return (React.createElement(MapElement, Object.assign({}, this.props, { isMarkerShown: this.props.wasRecentlyUpdated, googleMapURL: MAP_URL, containerElement: React.createElement("div", { style: { height: '400px' } }), loadingElement: React.createElement("div", { style: { height: '100%' } }), mapElement: React.createElement("div", { style: { height: '100%' } }) })));
+        return (React.createElement(React.Fragment, null,
+            React.createElement(MapElement, Object.assign({}, this.props, { isMarkerShown: this.props.hasLocationAvailable, googleMapURL: MAP_URL, containerElement: React.createElement("div", { style: { height: '400px' } }), loadingElement: React.createElement("div", { style: { height: '100%' } }), mapElement: React.createElement("div", { style: { height: '100%' } }) })),
+            !this.props.hasLocationAvailable && React.createElement(LoadingMessage, null)));
     }
 }
 exports.MapWithComponentTypeState = ({ shouldUsePureComponent }) => {
@@ -39647,11 +39650,12 @@ class PureComponentVsComponentExample extends React.Component {
                         "Use ",
                         shouldUsePureComponent ? 'Component' : 'PureComponent'))),
             React.createElement("p", null,
-                "The map gets updated every 5 seconds. Drag the map to a different location to see if location is set back to user's location after every 5 seconds. When using",
+                "The map gets updated every 5 seconds. Drag the map to a different location to see if location is set back to user's location after every 5 seconds. When using ",
                 React.createElement("strong", null, "PureComponent"),
                 ", the map should not zoom back to the user location while ",
                 React.createElement("strong", null, "Component"),
-                " does since the state update is not shallow.")));
+                ' ',
+                "does since the state update is not shallow.")));
     }
 }
 exports.default = PureComponentVsComponentExample;
@@ -39689,7 +39693,7 @@ const withComponentType = (WrappedComponent, shouldUsePureComponent) => {
                 latitude: 0,
                 longitude: 0,
                 isUpdated: false,
-                wasRecentlyUpdated: false
+                hasLocationAvailable: false
             };
             this.updateInterval = 0;
         }
@@ -39697,7 +39701,7 @@ const withComponentType = (WrappedComponent, shouldUsePureComponent) => {
             utils_1.getCurrentGeoLocation()
                 .then(({ latitude, longitude }) => {
                 this.setState({
-                    wasRecentlyUpdated: true,
+                    hasLocationAvailable: true,
                     latitude,
                     longitude
                 });

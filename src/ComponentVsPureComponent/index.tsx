@@ -44,10 +44,9 @@ class PureComponentVsComponentExample extends React.Component<{}, State> {
         <p>
           The map gets updated every 5 seconds. Drag the map to a different
           location to see if location is set back to user's location after every
-          5 seconds. When using
-          <strong>PureComponent</strong>, the map should not zoom back to the
-          user location while <strong>Component</strong> does since the state
-          update is not shallow.
+          5 seconds. When using <strong>PureComponent</strong>, the map should
+          not zoom back to the user location while <strong>Component</strong>{' '}
+          does since the state update is not shallow.
         </p>
       </div>
     );

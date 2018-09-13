@@ -23,6 +23,10 @@ const DEFAULT_CENTER = {
   lng: -122.431297
 };
 
+const LoadingMessage = () => (
+  <h4 style={{ textAlign: 'center' }}>Fetching your location...</h4>
+);
+
 const MAP_URL =
   'https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places';
 
@@ -42,7 +46,7 @@ const MapElement = withScriptjs(
 
 class MapView extends React.Component<
   {
-    wasRecentlyUpdated: boolean;
+    hasLocationAvailable: boolean;
     isMarkerShown: boolean;
     longitude: number;
     latitude: number;
@@ -52,14 +56,17 @@ class MapView extends React.Component<
 > {
   render() {
     return (
-      <MapElement
-        {...this.props}
-        isMarkerShown={this.props.wasRecentlyUpdated}
-        googleMapURL={MAP_URL}
-        containerElement={<div style={{ height: '400px' }} />}
-        loadingElement={<div style={{ height: '100%' }} />}
-        mapElement={<div style={{ height: '100%' }} />}
-      />
+      <React.Fragment>
+        <MapElement
+          {...this.props}
+          isMarkerShown={this.props.hasLocationAvailable}
+          googleMapURL={MAP_URL}
+          containerElement={<div style={{ height: '400px' }} />}
+          loadingElement={<div style={{ height: '100%' }} />}
+          mapElement={<div style={{ height: '100%' }} />}
+        />
+        {!this.props.hasLocationAvailable && <LoadingMessage />}
+      </React.Fragment>
     );
   }
 }
