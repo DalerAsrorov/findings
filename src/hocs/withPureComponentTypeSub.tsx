@@ -39,7 +39,7 @@ const withComponentType = (
     state = {
       latitude: 0,
       longitude: 0,
-      isUpdated: false,
+      isUpdated: true,
       hasLocationAvailable: false
     };
 
@@ -56,6 +56,10 @@ const withComponentType = (
           console.log('some error', error);
         });
 
+      // The update interval sets isUpdated to the same value
+      // Using Component should cause re-render after 5 seconds
+      // Using PureComponent should NOT cause re-render since props
+      // diff comparison is shallow
       this.updateInterval = window.setInterval(() => {
         this.setState({
           isUpdated: true
