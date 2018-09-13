@@ -11,12 +11,12 @@ type State = {
 };
 
 // styles
-const BTN_STYLE = {
+const BTN_STYLE: React.CSSProperties = {
   margin: '0 auto',
   display: 'block',
   marginTop: '8px'
 };
-const CONTROLS_WRAPPER_STYLE = {
+const CONTROLS_WRAPPER_STYLE: React.CSSProperties = {
   padding: '0px 20px',
   textAlign: 'center'
 };
