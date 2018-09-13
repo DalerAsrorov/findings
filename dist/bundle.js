@@ -39628,6 +39628,10 @@ const BTN_STYLE = {
     display: 'block',
     marginTop: '8px'
 };
+const CONTROLS_WRAPPER_STYLE = {
+    padding: '0px 20px',
+    textAlign: 'center'
+};
 class PureComponentVsComponentExample extends React.Component {
     constructor() {
         super(...arguments);
@@ -39649,13 +39653,15 @@ class PureComponentVsComponentExample extends React.Component {
                     React.createElement("h2", null,
                         "Use ",
                         shouldUsePureComponent ? 'Component' : 'PureComponent'))),
-            React.createElement("p", { style: { padding: '0px 20px' } },
-                "The map gets updated every 5 seconds. Drag the map to a different location to see if location is set back to user's location after every 5 seconds. When using ",
-                React.createElement("strong", null, "PureComponent"),
-                ", the map should not zoom back to the user location while ",
-                React.createElement("strong", null, "Component"),
-                ' ',
-                "does since the previous state propertiy isUpdated property stays the same. The comparison is not shallow.")));
+            React.createElement("div", { style: CONTROLS_WRAPPER_STYLE },
+                React.createElement("p", null,
+                    "The map gets updated every 5 seconds. Drag the map to a different location to see if location is set back to user's location after every 5 seconds. When using ",
+                    React.createElement("strong", null, "PureComponent"),
+                    ", the map should not zoom back to the user location while",
+                    ' ',
+                    React.createElement("strong", null, "Component"),
+                    " does since the previous state propertiy isUpdated property stays the same. The comparison is not shallow."),
+                React.createElement("a", { href: "https://github.com/DalerAsrorov/findings/tree/master/src/ComponentVsPureComponent", target: "__blank" }, "Source Code"))));
     }
 }
 exports.default = PureComponentVsComponentExample;

@@ -16,6 +16,10 @@ const BTN_STYLE = {
   display: 'block',
   marginTop: '8px'
 };
+const CONTROLS_WRAPPER_STYLE = {
+  padding: '0px 20px',
+  textAlign: 'center'
+};
 
 class PureComponentVsComponentExample extends React.Component<{}, State> {
   state = {
@@ -41,14 +45,22 @@ class PureComponentVsComponentExample extends React.Component<{}, State> {
             </h2>
           </button>
         </React.Fragment>
-        <p style={{ padding: '0px 20px' }}>
-          The map gets updated every 5 seconds. Drag the map to a different
-          location to see if location is set back to user's location after every
-          5 seconds. When using <strong>PureComponent</strong>, the map should
-          not zoom back to the user location while <strong>Component</strong>{' '}
-          does since the previous state propertiy isUpdated property stays the
-          same. The comparison is not shallow.
-        </p>
+        <div style={CONTROLS_WRAPPER_STYLE}>
+          <p>
+            The map gets updated every 5 seconds. Drag the map to a different
+            location to see if location is set back to user's location after
+            every 5 seconds. When using <strong>PureComponent</strong>, the map
+            should not zoom back to the user location while{' '}
+            <strong>Component</strong> does since the previous state propertiy
+            isUpdated property stays the same. The comparison is not shallow.
+          </p>
+          <a
+            href="https://github.com/DalerAsrorov/findings/tree/master/src/ComponentVsPureComponent"
+            target="__blank"
+          >
+            Source Code
+          </a>
+        </div>
       </div>
     );
   }
