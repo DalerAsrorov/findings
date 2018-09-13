@@ -23,11 +23,9 @@ class PureComponentVsComponentExample extends React.Component<{}, State> {
   };
 
   private handleSwitch = (event: React.MouseEvent<HTMLButtonElement>) => {
-    this.setState(({ shouldUsePureComponent }) => {
-      return {
-        shouldUsePureComponent: !shouldUsePureComponent
-      };
-    });
+    this.setState(({ shouldUsePureComponent }) => ({
+      shouldUsePureComponent: !shouldUsePureComponent
+    }));
   };
 
   render() {
