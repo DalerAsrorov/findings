@@ -2,5 +2,5 @@
 
 ## Content
 
-- [Behavior Comparison of React PureComponent vs. Component using Maps](./src/ComponentVsPureComponent)
+- [Behavior Comparison of React PureComponent vs. Component](./src/ComponentVsPureComponent)
 - [TODO: Hooks](./src/hooks)
