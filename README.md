@@ -1,5 +1,3 @@
-# findings
-
 Blog posts or notes on useful findings that help me understand various concepts.
 
 ## Set up
@@ -11,7 +9,3 @@ yarn install
 yarn build
 open index.html via browser
 ```
-
-## Content
-
-- [Behavior Comparison of React PureComponent vs. Component using Maps](./src/ComponentVsPureComponent)

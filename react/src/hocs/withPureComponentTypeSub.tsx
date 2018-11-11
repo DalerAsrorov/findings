@@ -1,13 +1,10 @@
 import * as React from 'react';
 import { getCurrentGeoLocation } from '../utils';
 
-const UPDATE_INTERVAL_MLS = 5000;
+const UPDATE_INTERVAL_MLS = 3000;
 
 export type ComponentTypeProps = {
-  latitude: number;
-  longitude: number;
   isUpdated: boolean;
-  hasLocationAvailable: boolean;
 };
 
 const withComponentType = (
@@ -37,25 +34,10 @@ const withComponentType = (
     }
 
     state = {
-      latitude: 0,
-      longitude: 0,
-      isUpdated: true,
-      hasLocationAvailable: false
+      isUpdated: true
     };
 
     componentDidMount() {
-      getCurrentGeoLocation()
-        .then(({ latitude, longitude }: Coords) => {
-          this.setState({
-            hasLocationAvailable: true,
-            latitude,
-            longitude
-          });
-        })
-        .catch((error: Error) => {
-          console.log('some error', error);
-        });
-
       // The update interval sets isUpdated to the same value
       // Using Component should cause re-render after 5 seconds
       // Using PureComponent should NOT cause re-render since state
